@@ -1,2 +1,6 @@
+alembic==1.7.7
+aiosqlite==0.17.0
 fastapi==0.78.0
+greenlet==3.0.3
+sqlalchemy==1.4.36
 uvicorn[standard]==0.17.6
