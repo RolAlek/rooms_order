@@ -14,6 +14,20 @@ class CRUDReservation(
 ):
 
     @staticmethod
+    async def get_future_reservations_for_room(
+        room_id: int,
+        session: AsyncSession
+    ) -> list[Reservation]:
+
+        reservations = await session.execute(
+            select(Reservation).where(
+                Reservation.meetingroom_id == room_id,
+                Reservation.to_reserve > datetime.now()
+            )
+        )
+        return reservations.scalars().all()
+
+    @staticmethod
     async def get_reservations_at_the_same_time(
         *,
         from_reserve: datetime,
