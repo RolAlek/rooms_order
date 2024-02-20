@@ -1,12 +1,15 @@
 from datetime import datetime
 
-from pydantic import BaseModel, root_validator, validator
+from pydantic import BaseModel, Extra, root_validator, validator
 
 
 class ReservationBase(BaseModel):
 
     from_reserve: datetime
     to_reserve: datetime
+
+    class Config:
+        extra = Extra.forbid
 
 
 class ReservationUpdate(ReservationBase):
@@ -18,6 +21,7 @@ class ReservationUpdate(ReservationBase):
                 'Время начала бронирования '
                 'не может быть меньше текущего времени'
             )
+        return value
 
     @root_validator(skip_on_failure=True)
     def check_from_reserve_before_to_reserve(cls, values):
