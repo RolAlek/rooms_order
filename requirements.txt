@@ -1,5 +1,6 @@
 alembic==1.7.7
 aiosqlite==0.17.0
+aiogoogle==5.6.0
 fastapi==0.78.0
 fastapi-users[sqlalchemy]==10.0.6
 greenlet==3.0.3
